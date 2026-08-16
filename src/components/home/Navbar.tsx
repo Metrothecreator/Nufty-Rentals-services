@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { LOGO_SRC } from "@/lib/assets";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { getWhatsAppLink } from "@/lib/whatsapp";
 
 const links = [
   { label: "Services", href: "#services" },
@@ -65,7 +65,7 @@ export default function Navbar() {
 
       {/* CTA */}
       <a
-        href={buildWhatsAppUrl("Hi Nufty, I'd like to get a quote for an event.")}
+        href={getWhatsAppLink("quote")}
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-2 px-5 py-3 bg-[#25D366] hover:bg-[#1da851] text-white text-[10px] font-semibold tracking-[0.18em] uppercase transition-colors duration-200 rounded-sm flex-shrink-0"
