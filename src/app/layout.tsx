@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -140,6 +141,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         {children}
+        <FloatingWhatsApp />
       </body>
     </html>
   );

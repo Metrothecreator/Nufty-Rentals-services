@@ -5,7 +5,7 @@ export default function BrandIntro(){return <section id="about" className="bg-ba
     <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
       <Reveal effect="reveal" className="lg:col-span-3"><p className="label text-[10px] text-accent">The Nufty Standard</p></Reveal>
       <Reveal effect="reveal-clip" className="lg:col-span-8 lg:col-start-4">
-        <h2 className="font-display text-balance text-[clamp(2.7rem,6.2vw,6.2rem)] font-medium leading-[.95] tracking-[-.035em]">Your event deserves <span className="italic text-black/45">a great setting.</span></h2>
+        <h2 className="font-display text-[clamp(2.4rem,5.6vw,5.6rem)] font-medium leading-[1.05] tracking-[-.025em]">Your event deserves<br /><span className="italic text-black/40">a great setting.</span></h2>
       </Reveal>
       <div className="hidden lg:col-span-3 lg:block"/>
       <Reveal effect="reveal" delay={120} className="lg:col-span-6 lg:col-start-4">

@@ -63,3 +63,10 @@ body {
   html { scroll-behavior: auto; }
   .reveal, .reveal-clip, .reveal-scale { opacity: 1 !important; transform:none !important; clip-path:none !important; transition:none !important; }
 }
+
+/* Floating WhatsApp CTA glow pulse */
+@keyframes wa-glow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0.55), 0 4px 20px rgba(37,211,102,0.25); }
+  50%       { box-shadow: 0 0 0 10px rgba(37,211,102,0), 0 4px 28px rgba(37,211,102,0.4); }
+}
+.animate-wa-glow { animation: wa-glow 2.6s ease-in-out infinite; }
