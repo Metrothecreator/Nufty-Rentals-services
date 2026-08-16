@@ -1,7 +1,80 @@
 "use client";
+import { useEffect, useState } from "react";
 import Image from "next/image";
-import {useEffect,useState} from "react";
-import WhatsAppButton from "@/components/ui/WhatsAppButton";
-import {LOGO_SRC} from "@/lib/assets";
-const LINKS=[{href:"#home",label:"Home"},{href:"#services",label:"Services"},{href:"#work",label:"Our Work"},{href:"#about",label:"About"},{href:"#contact",label:"Contact"}];
-export default function Navbar(){const [scrolled,setScrolled]=useState(false);const [open,setOpen]=useState(false);useEffect(()=>{const f=()=>setScrolled(window.scrollY>50);f();window.addEventListener("scroll",f,{passive:true});return()=>window.removeEventListener("scroll",f)},[]);useEffect(()=>{document.body.style.overflow=open?"hidden":"";return()=>{document.body.style.overflow=""}},[open]);return <header className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${scrolled||open?"bg-[#f4f0e9]/92 text-foreground shadow-[0_1px_0_rgba(21,19,16,.1)] backdrop-blur-xl":"bg-transparent text-white"}`}><nav className="mx-auto flex h-[76px] max-w-[1500px] items-center justify-between px-5 sm:px-9 lg:px-14"><a href="#home" className="flex items-center gap-3" aria-label="Nufty Rental Service"><span className="relative h-10 w-10 shrink-0"><Image src={LOGO_SRC} alt="Nufty Rental Service logo" fill sizes="40px" className="object-contain" priority/></span><span className="hidden sm:block"><span className="font-display text-base leading-none">Nufty</span><span className="mt-1 block label text-[7px] opacity-60">Rental Service</span></span></a><div className="hidden items-center gap-8 lg:flex">{LINKS.map(l=><a key={l.href} href={l.href} className="label text-[9px] opacity-70 transition hover:opacity-100">{l.label}</a>)}</div><div className="hidden lg:block"><WhatsAppButton messageKey="quote" size="sm" variant={scrolled?"solid":"ghost"}>Get a Quote</WhatsAppButton></div><button onClick={()=>setOpen(v=>!v)} className="relative z-[60] flex h-10 w-10 flex-col items-center justify-center gap-1.5 lg:hidden" aria-label={open?"Close menu":"Open menu"} aria-expanded={open}><span className={`h-px w-6 bg-current transition ${open?"translate-y-2 rotate-45":""}`}/><span className={`h-px w-6 bg-current transition ${open?"opacity-0":""}`}/><span className={`h-px w-6 bg-current transition ${open?"-translate-y-2 -rotate-45":""}`}/></button></nav><div className={`fixed inset-0 z-50 flex flex-col justify-between bg-ink px-6 pb-10 pt-28 transition duration-500 lg:hidden ${open?"translate-x-0 opacity-100":"pointer-events-none translate-x-full opacity-0"}`}><div>{LINKS.map((l,i)=><a key={l.href} href={l.href} onClick={()=>setOpen(false)} className="block border-b border-white/10 py-5 font-display text-4xl text-white">{String(i+1).padStart(2,"0")} <span className="ml-3">{l.label}</span></a>)}</div><WhatsAppButton messageKey="quote" size="lg" className="w-full">Chat on WhatsApp</WhatsAppButton></div></header>}
+import Link from "next/link";
+import { LOGO_SRC } from "@/lib/assets";
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+
+const links = [
+  { label: "Services", href: "#services" },
+  { label: "Portfolio", href: "#work" },
+  { label: "About",    href: "#about" },
+  { label: "Contact",  href: "#contact" },
+];
+
+export default function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <nav
+      className={[
+        "fixed top-0 left-0 right-0 z-50 h-[72px] flex items-center justify-between transition-all duration-500",
+        "px-4 md:px-14",
+        scrolled
+          ? "bg-black/95 shadow-[0_1px_0_rgba(255,255,255,0.07)] backdrop-blur-xl"
+          : "bg-transparent",
+      ].join(" ")}
+    >
+      {/* Logo */}
+      <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+        <div className="w-[52px] h-[52px] rounded-[10px] bg-white/95 flex items-center justify-center p-[5px] overflow-hidden shadow-[0_2px_12px_rgba(192,57,43,0.25)]">
+          <Image
+            src={LOGO_SRC}
+            alt="Nufty Rental Service logo"
+            width={42}
+            height={42}
+            className="object-contain w-full h-full"
+            priority
+          />
+        </div>
+        <div className="leading-tight">
+          <span className="block font-display text-[18px] font-medium text-[#f5f0eb] tracking-[0.01em]">Nufty</span>
+          <span className="block font-sans text-[9px] font-medium tracking-[0.22em] uppercase text-[#9a9089]">Rental Service</span>
+        </div>
+      </Link>
+
+      {/* Links */}
+      <ul className="hidden md:flex gap-10 list-none">
+        {links.map((l) => (
+          <li key={l.href}>
+            <Link
+              href={l.href}
+              className="text-[11px] font-medium tracking-[0.15em] uppercase text-[#9a9089] hover:text-[#f5f0eb] transition-colors duration-200"
+            >
+              {l.label}
+            </Link>
+          </li>
+        ))}
+      </ul>
+
+      {/* CTA */}
+      <a
+        href={buildWhatsAppUrl("Hi Nufty, I'd like to get a quote for an event.")}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="flex items-center gap-2 px-5 py-3 bg-[#25D366] hover:bg-[#1da851] text-white text-[10px] font-semibold tracking-[0.18em] uppercase transition-colors duration-200 rounded-sm flex-shrink-0"
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
+        Get a Quote
+      </a>
+    </nav>
+  );
+}
