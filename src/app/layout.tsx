@@ -116,6 +116,12 @@ const jsonLd = {
         "Party & Celebration Rental",
         "Event Equipment Rental",
       ],
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday",
+          ],
           opens: "07:00",
           closes: "20:00",
         },
