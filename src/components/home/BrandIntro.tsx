@@ -21,6 +21,8 @@ export default function BrandIntro(){return <section id="about" className="bg-ba
           <span className="label text-[9px] text-muted-2">Based in</span>
           <p className="mt-2 font-display text-2xl">Rumuigbo</p>
           <p className="text-xs text-muted">Port Harcourt</p>
+          <span className="label mt-5 block text-[9px] text-muted-2">Established</span>
+          <p className="mt-1.5 font-display text-2xl">2002</p>
         </div>
       </Reveal>
     </div>

@@ -1,5 +1,9 @@
+"use client";
+
 import type { ReactNode } from "react";
-import { getWhatsAppLink, type WhatsAppMessageKey } from "@/lib/whatsapp";
+import { useBooking } from "@/components/booking/BookingProvider";
+import { prefillForMessageKey } from "@/lib/booking";
+import type { WhatsAppMessageKey } from "@/lib/whatsapp";
 
 type Variant = "solid" | "outline" | "ghost" | "bare";
 type Size = "sm" | "md" | "lg";
@@ -36,14 +40,13 @@ export default function WhatsAppButton({
   icon?: boolean;
   ariaLabel?: string;
 }) {
-  const href = getWhatsAppLink(messageKey);
+  const { openBooking } = useBooking();
 
   return (
-    <a
-      href={href}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={ariaLabel ?? "Chat with Nufty Rental Service on WhatsApp"}
+    <button
+      type="button"
+      onClick={() => openBooking(prefillForMessageKey(messageKey))}
+      aria-label={ariaLabel ?? "Book Nufty Rental Service on WhatsApp"}
       className={`group inline-flex items-center justify-center gap-2.5 whitespace-nowrap rounded-full font-sans font-semibold uppercase tracking-[0.16em] transition-all duration-300 ease-out ${variantClasses[variant]} ${sizeClasses[size]} ${className}`}
     >
       {icon && (
@@ -56,6 +59,6 @@ export default function WhatsAppButton({
         </svg>
       )}
       {children}
-    </a>
+    </button>
   );
 }

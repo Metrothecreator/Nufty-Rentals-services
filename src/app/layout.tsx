@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import BookingProvider from "@/components/booking/BookingProvider";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -82,19 +83,21 @@ const jsonLd = {
       "@type": "Organization",
       "@id": `${SITE_URL}/#organization`,
       name: "Nufty Rental Service",
-      url: SITE_URL,
+      url: "https://nuftyrentals.com",
       logo: `${SITE_URL}/images/logo-nufty.png`,
       image: `${SITE_URL}/sequences/canopy/frame_0120.jpg`,
       telephone: "+2348033448571",
-      sameAs: ["https://wa.me/2348033448571"],
+      foundingDate: "2002",
+      sameAs: ["https://wa.me/2348033448571", "https://nuftyrentals.com"],
     },
     {
       "@type": "LocalBusiness",
       "@id": `${SITE_URL}/#localbusiness`,
       name: "Nufty Rental Service",
       image: `${SITE_URL}/sequences/canopy/frame_0120.jpg`,
-      url: SITE_URL,
+      url: "https://nuftyrentals.com",
       telephone: ["+2348033448571", "+2348054782270"],
+      foundingDate: "2002",
       address: {
         "@type": "PostalAddress",
         streetAddress: "609 Ikwere Road, Rumuigbo",
@@ -140,8 +143,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
-        <FloatingWhatsApp />
+        <BookingProvider>
+          {children}
+          <FloatingWhatsApp />
+        </BookingProvider>
       </body>
     </html>
   );
