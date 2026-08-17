@@ -85,8 +85,8 @@ const jsonLd = {
       url: SITE_URL,
       logo: `${SITE_URL}/images/logo-nufty.png`,
       image: `${SITE_URL}/sequences/canopy/frame_0120.jpg`,
-      telephone: "+2348033448671",
-      sameAs: ["https://wa.me/2348033448671"],
+      telephone: "+2348033448571",
+      sameAs: ["https://wa.me/2348033448571"],
     },
     {
       "@type": "LocalBusiness",
@@ -94,7 +94,7 @@ const jsonLd = {
       name: "Nufty Rental Service",
       image: `${SITE_URL}/sequences/canopy/frame_0120.jpg`,
       url: SITE_URL,
-      telephone: ["+2348033448671", "+2348054782270"],
+      telephone: ["+2348033448571", "+2348054782270"],
       address: {
         "@type": "PostalAddress",
         streetAddress: "609 Ikwere Road, Rumuigbo",

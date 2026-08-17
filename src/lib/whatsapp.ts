@@ -2,9 +2,9 @@
 // Every enquiry on the site routes through WhatsApp — there is no
 // booking system, no payments, and no accounts.
 
-export const WHATSAPP_NUMBER = "2348033448671";
+export const WHATSAPP_NUMBER = "2348033448571";
 
-export const PHONE_NUMBERS = ["08033448671", "08054782270"];
+export const PHONE_NUMBERS = ["08033448571", "08054782270"];
 
 export const ADDRESS = {
   line1: "609 Ikwere Road",
