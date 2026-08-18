@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import FloatingWhatsApp from "@/components/ui/FloatingWhatsApp";
+import BookingProvider from "@/components/ui/BookingProvider";
 import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -143,8 +144,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           // eslint-disable-next-line react/no-danger
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {children}
-        <FloatingWhatsApp />
+        <BookingProvider>
+          {children}
+          <FloatingWhatsApp />
+        </BookingProvider>
       </body>
     </html>
   );

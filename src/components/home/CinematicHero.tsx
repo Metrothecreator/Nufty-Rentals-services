@@ -109,7 +109,7 @@ export default function CinematicHero() {
                 Canopies, tents and event setups designed to give your occasion the setting it deserves.
               </p>
               <div className="flex flex-wrap items-center gap-5">
-                <WhatsAppButton messageKey="quote" size="md">Get a Quote</WhatsAppButton>
+                <WhatsAppButton messageKey="quote" size="md" useModal>Get a Quote</WhatsAppButton>
                 <a
                   href="#work"
                   className="group label border-b border-white/30 pb-2 text-[10px] text-white/75 transition hover:border-white hover:text-white"
