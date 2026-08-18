@@ -23,6 +23,9 @@ const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  verification: {
+    google: "0U8ZVLdW9yUGPyogFhi8fTGiWAxp9bvmnLkUek1iuQ0",
+  },
   title: {
     default: "Nufty Rental Service | Canopy & Event Rentals in Port Harcourt",
     template: "%s | Nufty Rental Service",
