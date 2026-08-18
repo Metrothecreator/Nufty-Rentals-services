@@ -33,7 +33,10 @@ export const WHATSAPP_MESSAGES = {
 
 export type WhatsAppMessageKey = keyof typeof WHATSAPP_MESSAGES;
 
+export function getWhatsAppTextLink(text: string) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(text)}`;
+}
+
 export function getWhatsAppLink(messageKey: WhatsAppMessageKey = "general") {
-  const text = encodeURIComponent(WHATSAPP_MESSAGES[messageKey]);
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${text}`;
+  return getWhatsAppTextLink(WHATSAPP_MESSAGES[messageKey]);
 }
