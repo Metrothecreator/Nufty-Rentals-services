@@ -65,6 +65,10 @@ const ScrollImageSequence = forwardRef<
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
+    // Higher-quality upsampling for large desktop viewports where the
+    // 720px-wide source frames get stretched to full width.
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = "high";
     const { w, h } = sizeRef.current;
     if (!w || !h) return;
 
