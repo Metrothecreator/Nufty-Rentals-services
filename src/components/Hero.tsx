@@ -4,11 +4,19 @@ import { useEffect, useRef } from "react";
 import ScrollSequence, { type ScrollSequenceHandle } from "./ScrollSequence";
 
 const FRAMES = [
-  { src: "/seq/frame-01.jpg", alt: "Construction site at dusk" },
-  { src: "/seq/frame-02.jpg", alt: "Structural build" },
-  { src: "/seq/frame-03.jpg", alt: "Modern residence" },
+  { src: "/seq/frame-06.jpg", alt: "Empty site at dawn" },
+  { src: "/seq/frame-07.jpg", alt: "Foundation pour" },
+  { src: "/seq/frame-01.jpg", alt: "Foundation and steel columns" },
+  { src: "/seq/frame-08.jpg", alt: "Steel frame skeleton" },
+  { src: "/seq/frame-02.jpg", alt: "Concrete shell" },
+  { src: "/seq/frame-09.jpg", alt: "Scaffolding and cladding" },
+  { src: "/seq/frame-03.jpg", alt: "Facade taking shape" },
+  { src: "/seq/frame-10.jpg", alt: "Glazing and windows" },
   { src: "/seq/frame-04.jpg", alt: "Finished interior" },
-  { src: "/seq/frame-05.jpg", alt: "Completed commercial building" },
+  { src: "/seq/frame-11.jpg", alt: "Kitchen interior" },
+  { src: "/seq/frame-05.jpg", alt: "Completed building" },
+  { src: "/seq/frame-12.jpg", alt: "Night view" },
+  { src: "/seq/frame-13.jpg", alt: "Final aerial view" },
 ];
 
 function clamp(v: number, min: number, max: number) {
@@ -68,7 +76,7 @@ export default function Hero({ onQuote }: { onQuote: () => void }) {
     <section
       id="home"
       ref={wrapperRef}
-      className="relative h-[430vh] motion-reduce:h-auto"
+      className="relative h-[560vh] motion-reduce:h-auto"
       aria-label="Cubix construction and architecture"
     >
       <div className="sticky top-0 h-[100dvh] overflow-hidden bg-ink motion-reduce:static motion-reduce:h-[88dvh]">
